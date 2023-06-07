@@ -1,0 +1,16 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block 'body' %}
+<div class="d-flex align-items-center flex-column w-auto ">
+    <h4>First Name: </h4>
+    <p>{{ student_information.first_name }}</p>
+    <h4>Last Name: </h4>
+    <p>{{ student_information.last_name }}</p>
+    <h4>Status: </h4>
+    {% if student_information.status == 'izv' %}
+    <p>Izvaredan Student</p>
+    {% else %}
+    <p>Redovan Student</p>
+    {% endif %}
+</div>
+{% endblock %}

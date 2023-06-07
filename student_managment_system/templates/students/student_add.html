@@ -1,0 +1,21 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block 'body' %}
+<form method="POST">
+    {% csrf_token %}
+    <div class="d-flex align-items-center flex-column w-auto ">
+        <h4>Ime: </h4>
+        <p>{{ form.first_name }}</p>
+        <h4>Prezime: </h4>
+        <p>{{ form.last_name }}</p>
+        <h4>Email: </h4>
+        <p>{{ form.username }}</p>
+        <h4>Status: </h4>
+        <p>{{ form.status}}</p>
+        <h4>Password: </h4>
+        <p>{{ form.password }}</p>
+        <input type="hidden" name="uloga" value="1">
+        <button type="submit" value="Submit" class="btn btn-primary m-5">Submit</button>
+    </div>
+</form>
+{% endblock %}

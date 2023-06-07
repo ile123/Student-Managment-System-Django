@@ -1,0 +1,98 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block 'body' %}
+{% if enrolled_students|length > 0 %}
+<h3 class="d-flex justify-content-center">Enrolled Students: </h3>
+<table class="table table-hover table-bordered mt-6">
+    <thead class="bg-primary">
+        <tr>
+            <th class="text-center">Ime: </th>
+            <th class="text-center">Prezime: </th>
+            <th class="text-center">Email: </th>
+            {% if user.uloga.name == 'profesor' %}
+            <th class="text-center">Opcije: </th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in enrolled_students %}
+        <tr>
+            <td class="text-center">{{ student.firstName }}</td>
+            <td class="text-center">{{ student.lastName }}</td>
+            <td class="text-center">{{ student.username }}</td>
+            {% if user.uloga.name == 'profesor' %}
+            <td class="d-flex justify-content-center">
+                <a href="{% url 'change_student_status' status_id=student.status_id %}" type="button" class="btn btn-outline-primary">Change Enrollment Status</a>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<h3 class="d-flex justify-content-center mt-5">There are no enrolled students!</h3>
+{% endif %}
+{% if failed_students|length > 0 %}
+<h3 class="mt-6">Failed Students: </h3>
+<table class="table table-hover table-bordered mt-6">
+    <thead class="bg-primary">
+        <tr>
+            <th class="text-center">Ime: </th>
+            <th class="text-center">Prezime: </th>
+            <th class="text-center">Email: </th>
+            {% if user.uloga.name == 'profesor' %}
+            <th class="text-center">Opcije: </th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in failed_students %}
+        <tr>
+            <td class="text-center">{{ student.firstName }}</td>
+            <td class="text-center">{{ student.lastName }}</td>
+            <td class="text-center">{{ student.username }}</td>
+            {% if user.uloga.name == 'profesor' %}
+            <td class="d-flex justify-content-center">
+                <a href="{% url 'change_student_status' status_id=student.status_id %}" type="button" class="btn btn-outline-primary">Change Enrollment Status</a>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<h3 class="d-flex justify-content-center mt-5">There are no failed students!</h3>
+{% endif %}
+{% if passed_students|length > 0 %}
+<h3>Passed Students: </h3>
+<table class="table table-hover table-bordered mt-6">
+    <thead class="bg-primary">
+        <tr>
+            <th class="text-center">Ime: </th>
+            <th class="text-center">Prezime: </th>
+            <th class="text-center">Email: </th>
+            {% if user.uloga.name == 'profesor' %}
+            <th class="text-center">Opcije: </th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in passed_students %}
+        <tr>
+            <td class="text-center">{{ student.firstName }}</td>
+            <td class="text-center">{{ student.lastName }}</td>
+            <td class="text-center">{{ student.username }}</td>
+            {% if user.uloga.name == 'profesor' %}
+            <td class="d-flex justify-content-center">
+                <a href="{% url 'change_student_status' status_id=student.status_id %}" type="button" class="btn btn-outline-primary">Change Enrollment Status</a>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<h3 class="d-flex justify-content-center mt-5">There are no passed students!</h3>
+{% endif %}
+{% endblock %}

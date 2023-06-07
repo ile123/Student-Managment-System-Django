@@ -1,0 +1,30 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block 'body' %}
+<a href="{% url 'profesor_add' %}" class="btn btn-outline-info mb-4">Add new profesor</a>
+<table class="table table-hover table-bordered">
+    <thead class="bg-primary">
+        <tr>
+            <th scope="col" class="text-center">Ime: </th>
+            <th scope="col" class="text-center">Prezime: </th>
+            <th scope="col" class="text-center">Email: </th>
+            <th class="text-center">Opcije: </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for profesor in profesors %}
+        <tr>
+            <td scope="row" class="text-center">{{profesor.first_name}}</td>
+            <td scope="row" class="text-center">{{profesor.last_name}}</td>
+            <td scope="row" class="text-center">{{profesor.username}}</td>
+            <td class="text-center table-light">
+                <a href="{% url 'profesor_information' id=profesor.id %}" type="button" class="btn btn-outline-primary">Details</a>
+                <a href="{% url 'profesor_edit' id=profesor.id %}" type="button" class="btn btn-sm btn-outline-secondary">Edit</a>
+                <a href="{% url 'profesor_delete_confirmation' id=profesor.id %}" type="button" class="btn btn-outline-danger">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

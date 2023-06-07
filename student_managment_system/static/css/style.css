@@ -1,0 +1,30 @@
+body {
+    background-color: #FBEAEB;
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    background-color: #2F3C7E;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 5rem;
+    display: grid;
+    color: #FBEAEB;
+}
+
+.footer {
+    margin-top: auto;
+    background-color: #2F3C7E;
+    width: 100%;
+    position: absolute;
+    bottom: 0rem;
+    left: 0rem;
+    display: grid;
+    height: 5.5rem;
+    color: #FBEAEB;
+}

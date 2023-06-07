@@ -1,0 +1,15 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block 'body' %}
+<form method="POST">
+    {% csrf_token %}
+    <div class="d-flex align-items-center flex-column w-auto ">
+            <h4>Email: </h4>
+            <p>{{ form.username }}</p>
+            <h4>Password: </h4>
+            <p>{{ form.password }}</p>
+        <input type="submit" value="Login" class="btn btn-danger">
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block 'body' %}
+{% if user.uloga.name == 'administrator' %}
+<a href="{% url 'subject_add' %}" class="btn btn-outline-info mb-4">Add new subject</a>
+{% endif %}
+    <table class="table table-hover table-bordered">
+        <thead class="bg-primary">
+            <tr>
+                <th scope="col" class="text-center">Ime: </th>
+                <th scope="col" class="text-center">Kod: </th>
+                <th scope="col" class="text-center">ECTS: </th>
+                <th class="text-center">Opcije: </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for subject in data %}
+            <tr>
+                <td scope="row" class="text-center">{{subject.name}}</td>
+                <td scope="row" class="text-center">{{subject.kod}}</td>
+                <td scope="row" class="text-center">{{subject.ects}}</td>
+                {% if user.uloga.name == 'administrator' %}
+                <td class="text-center table-light">
+                    <a href="{% url 'subject_information' id=subject.id %}" type="button" class="btn btn-outline-primary">Details</a>
+                    <a href="{% url 'subject_edit' id=subject.id %}" type="button" class="btn btn-sm btn-outline-secondary">Edit</a>
+                    <a href="{% url 'subject_delete_confirmation' id=subject.id %}" type="button" class="btn btn-outline-danger">Delete</a>
+                    <a href="{% url 'subject_all_students' subject_id=subject.id %}" type="button" class="btn btn-outline-info">View All Students</a>
+                </td>
+                {% else %}
+                <td class="text-center table-light">
+                    <a href="{% url 'subject_all_students' subject_id=subject.id %}" type="button" class="btn btn-outline-info">View All Students</a>
+                </td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

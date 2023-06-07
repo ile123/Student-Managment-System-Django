@@ -1,0 +1,13 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block 'body' %}
+<div class="d-flex align-items-center flex-column w-auto ">
+    <form action="{% url 'student_delete' data %}" method="POST">
+        <p>Are you sure?</p>
+        {% csrf_token %}
+        <input type="submit" name="yes" value="yes" class="btn btn-primary">
+        <input type="submit" name="no" value="no" class="btn btn-danger">
+    </form>
+</div>
+{% endblock %}

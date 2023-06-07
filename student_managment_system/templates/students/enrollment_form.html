@@ -1,0 +1,320 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block 'body' %}
+<form method="POST">
+{% csrf_token %}
+{%if first_semester|length > 0 %}
+<h3 class="mt-4">Prvi Semestar: </h3>
+<table class="table table-hover table-bordered">
+    <thead class="bg-primary">
+        <tr>
+            <th scope="col" class="text-center">Ime: </th>
+            <th scope="col" class="text-center">Kod: </th>
+            <th scope="col" class="text-center">ECTS: </th>
+            <th scope="col" class="text-center">Status: </th>
+            <th class="text-center" class="text-center">Opcije: </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for subject in first_semester %}
+        <tr>
+            <td class="text-center">{{ subject.name }}</td>
+            <td class="text-center">{{ subject.kod }}</td>
+            <td class="text-center">{{ subject.ects }}</td>
+            {% if subject.status == 'upisan' %}
+            <td class="text-center">Upisan</td>
+            {% elif subject.status == 'neupisan' %}
+            <td class="text-center">Neupisan</td>
+            {% elif subject.status == 'izgubljen_potpis' %}
+            <td class="text-center">Izgubia potpis</td>
+            {% else %}
+            <td class="text-center">Polozeno</td>
+            {% endif %}
+            <td class="d-flex justify-content-center">
+                {% if subject.status == 'upisan'%}
+                <button type="submit" name="values" value='{ "subject": {{ subject.id }}, "status": "neupisan" }' class="btn btn-outline-danger mt-2">Unroll</button>
+                {% else %}
+                <button type="submit" name="values" value='{ "subject": {{ subject.id }}, "status": "upisan" }' class="btn btn-outline-primary mt-2">Enroll</button>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+{%if second_semester|length > 0 %}
+<h3 class="mt-4">Drugi Semestar: </h3>
+<table class="table table-hover table-bordered">
+    <thead class="bg-primary">
+        <tr>
+            <th scope="col" class="text-center">Ime: </th>
+            <th scope="col" class="text-center">Kod: </th>
+            <th scope="col" class="text-center">ECTS: </th>
+            <th scope="col" class="text-center">Status: </th>
+            <th class="text-center" class="text-center">Opcije: </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for subject in second_semester %}
+        <tr>
+            <td class="text-center">{{ subject.name }}</td>
+            <td class="text-center">{{ subject.kod }}</td>
+            <td class="text-center">{{ subject.ects }}</td>
+            {% if subject.status == 'upisan' %}
+            <td class="text-center">Upisan</td>
+            {% elif subject.status == 'neupisan' %}
+            <td class="text-center">Neupisan</td>
+            {% elif subject.status == 'izgubljen_potpis' %}
+            <td class="text-center">Izgubia potpis</td>
+            {% else %}
+            <td class="text-center">Polozeno</td>
+            {% endif %}
+            <td class="d-flex justify-content-center">
+                {% if subject.status == 'upisan'%}
+                <button type="submit" name="values" value='{ "subject": {{ subject.id }}, "status": "neupisan" }' class="btn btn-outline-danger mt-2">Unroll</button>
+                {% else %}
+                <button type="submit" name="values" value='{ "subject": {{ subject.id }}, "status": "upisan" }' class="btn btn-outline-primary mt-2">Enroll</button>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+{%if third_semester|length > 0 %}
+<h3 class="mt-4">Treci Semestar: </h3>
+<table class="table table-hover table-bordered">
+    <thead class="bg-primary">
+        <tr>
+            <th scope="col" class="text-center">Ime: </th>
+            <th scope="col" class="text-center">Kod: </th>
+            <th scope="col" class="text-center">ECTS: </th>
+            <th scope="col" class="text-center">Status: </th>
+            <th class="text-center" class="text-center">Opcije: </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for subject in third_semester %}
+        <tr>
+            <td class="text-center">{{ subject.name }}</td>
+            <td class="text-center">{{ subject.kod }}</td>
+            <td class="text-center">{{ subject.ects }}</td>
+            {% if subject.status == 'upisan' %}
+            <td class="text-center">Upisan</td>
+            {% elif subject.status == 'neupisan' %}
+            <td class="text-center">Neupisan</td>
+            {% elif subject.status == 'izgubljen_potpis' %}
+            <td class="text-center">Izgubia potpis</td>
+            {% else %}
+            <td class="text-center">Polozeno</td>
+            {% endif %}
+            <td class="d-flex justify-content-center">
+                {% if subject.status == 'upisan'%}
+                <button type="submit" name="values" value='{ "subject": {{ subject.id }}, "status": "neupisan" }' class="btn btn-outline-danger mt-2">Unroll</button>
+                {% else %}
+                <button type="submit" name="values" value='{ "subject": {{ subject.id }}, "status": "upisan" }' class="btn btn-outline-primary mt-2">Enroll</button>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+{%if fourth_semester|length > 0 %}
+<h3 class="mt-4">Cetvrti Semestar: </h3>
+<table class="table table-hover table-bordered">
+    <thead class="bg-primary">
+        <tr>
+            <th scope="col" class="text-center">Ime: </th>
+            <th scope="col" class="text-center">Kod: </th>
+            <th scope="col" class="text-center">ECTS: </th>
+            <th scope="col" class="text-center">Status: </th>
+            <th class="text-center" class="text-center">Opcije: </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for subject in fourth_semester %}
+        <tr>
+            <td class="text-center">{{ subject.name }}</td>
+            <td class="text-center">{{ subject.kod }}</td>
+            <td class="text-center">{{ subject.ects }}</td>
+            {% if subject.status == 'upisan' %}
+            <td class="text-center">Upisan</td>
+            {% elif subject.status == 'neupisan' %}
+            <td class="text-center">Neupisan</td>
+            {% elif subject.status == 'izgubljen_potpis' %}
+            <td class="text-center">Izgubia potpis</td>
+            {% else %}
+            <td class="text-center">Polozeno</td>
+            {% endif %}
+            <td class="d-flex justify-content-center">
+                {% if subject.status == 'upisan'%}
+                <button type="submit" name="values" value='{ "subject": {{ subject.id }}, "status": "neupisan" }' class="btn btn-outline-danger mt-2">Unroll</button>
+                {% else %}
+                <button type="submit" name="values" value='{ "subject": {{ subject.id }}, "status": "upisan" }' class="btn btn-outline-primary mt-2">Enroll</button>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+{%if fifth_semester|length > 0 %}
+<h3 class="mt-4">Peti Semestar: </h3>
+<table class="table table-hover table-bordered">
+    <thead class="bg-primary">
+        <tr>
+            <th scope="col" class="text-center">Ime: </th>
+            <th scope="col" class="text-center">Kod: </th>
+            <th scope="col" class="text-center">ECTS: </th>
+            <th scope="col" class="text-center">Status: </th>
+            <th class="text-center" class="text-center">Opcije: </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for subject in fifth_semester %}
+        <tr>
+            <td class="text-center">{{ subject.name }}</td>
+            <td class="text-center">{{ subject.kod }}</td>
+            <td class="text-center">{{ subject.ects }}</td>
+            {% if subject.status == 'upisan' %}
+            <td class="text-center">Upisan</td>
+            {% elif subject.status == 'neupisan' %}
+            <td class="text-center">Neupisan</td>
+            {% elif subject.status == 'izgubljen_potpis' %}
+            <td class="text-center">Izgubia potpis</td>
+            {% else %}
+            <td class="text-center">Polozeno</td>
+            {% endif %}
+            <td class="d-flex justify-content-center">
+                {% if subject.status == 'upisan'%}
+                <button type="submit" name="values" value='{ "subject": {{ subject.id }}, "status": "neupisan" }' class="btn btn-outline-danger mt-2">Unroll</button>
+                {% else %}
+                <button type="submit" name="values" value='{ "subject": {{ subject.id }}, "status": "upisan" }' class="btn btn-outline-primary mt-2">Enroll</button>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+{%if sixth_semester|length > 0 %}
+<h3 class="mt-4">Sesti Semestar: </h3>
+<table class="table table-hover table-bordered">
+    <thead class="bg-primary">
+        <tr>
+            <th scope="col" class="text-center">Ime: </th>
+            <th scope="col" class="text-center">Kod: </th>
+            <th scope="col" class="text-center">ECTS: </th>
+            <th scope="col" class="text-center">Status: </th>
+            <th class="text-center" class="text-center">Opcije: </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for subject in sixth_semester %}
+        <tr>
+            <td class="text-center">{{ subject.name }}</td>
+            <td class="text-center">{{ subject.kod }}</td>
+            <td class="text-center">{{ subject.ects }}</td>
+            {% if subject.status == 'upisan' %}
+            <td class="text-center">Upisan</td>
+            {% elif subject.status == 'neupisan' %}
+            <td class="text-center">Neupisan</td>
+            {% elif subject.status == 'izgubljen_potpis' %}
+            <td class="text-center">Izgubia potpis</td>
+            {% else %}
+            <td class="text-center">Polozeno</td>
+            {% endif %}
+            <td class="d-flex justify-content-center">
+                {% if subject.status == 'upisan'%}
+                <button type="submit" name="values" value='{ "subject": {{ subject.id }}, "status": "neupisan" }' class="btn btn-outline-danger mt-2">Unroll</button>
+                {% else %}
+                <button type="submit" name="values" value='{ "subject": {{ subject.id }}, "status": "upisan" }' class="btn btn-outline-primary mt-2">Enroll</button>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+{%if seventh_semester|length > 0 %}
+<h3 class="mt-4">Sedmi Semestar: </h3>
+<table class="table table-hover table-bordered">
+    <thead class="bg-primary">
+        <tr>
+            <th scope="col" class="text-center">Ime: </th>
+            <th scope="col" class="text-center">Kod: </th>
+            <th scope="col" class="text-center">ECTS: </th>
+            <th scope="col" class="text-center">Status: </th>
+            <th class="text-center" class="text-center">Opcije: </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for subject in seventh_semester %}
+        <tr>
+            <td class="text-center">{{ subject.name }}</td>
+            <td class="text-center">{{ subject.kod }}</td>
+            <td class="text-center">{{ subject.ects }}</td>
+            {% if subject.status == 'upisan' %}
+            <td class="text-center">Upisan</td>
+            {% elif subject.status == 'neupisan' %}
+            <td class="text-center">Neupisan</td>
+            {% elif subject.status == 'izgubljen_potpis' %}
+            <td class="text-center">Izgubia potpis</td>
+            {% else %}
+            <td class="text-center">Polozeno</td>
+            {% endif %}
+            <td class="d-flex justify-content-center">
+                {% if subject.status == 'upisan'%}
+                <button type="submit" name="values" value='{ "subject": {{ subject.id }}, "status": "neupisan" }' class="btn btn-outline-danger mt-2">Unroll</button>
+                {% else %}
+                <button type="submit" name="values" value='{ "subject": {{ subject.id }}, "status": "upisan" }' class="btn btn-outline-primary mt-2">Enroll</button>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+{%if eight_semester|length > 0 %}
+<h3 class="mt-4">Osmi Semestar: </h3>
+<table class="table table-hover table-bordered">
+    <thead class="bg-primary">
+        <tr>
+            <th scope="col" class="text-center">Ime: </th>
+            <th scope="col" class="text-center">Kod: </th>
+            <th scope="col" class="text-center">ECTS: </th>
+            <th scope="col" class="text-center">Status: </th>
+            <th class="text-center" class="text-center">Opcije: </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for subject in eight_semester %}
+        <tr>
+            <td class="text-center">{{ subject.name }}</td>
+            <td class="text-center">{{ subject.kod }}</td>
+            <td class="text-center">{{ subject.ects }}</td>
+            {% if subject.status == 'upisan' %}
+            <td class="text-center">Upisan</td>
+            {% elif subject.status == 'neupisan' %}
+            <td class="text-center">Neupisan</td>
+            {% elif subject.status == 'izgubljen_potpis' %}
+            <td class="text-center">Izgubia potpis</td>
+            {% else %}
+            <td class="text-center">Polozeno</td>
+            {% endif %}
+            <td class="d-flex justify-content-center">
+                {% if subject.status == 'upisan'%}
+                <button type="submit" name="values" value='{ "subject": {{ subject.id }}, "status": "neupisan" }' class="btn btn-outline-danger mt-2">Unroll</button>
+                {% else %}
+                <button type="submit" name="values" value='{ "subject": {{ subject.id }}, "status": "upisan" }' class="btn btn-outline-primary mt-2">Enroll</button>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+</form>
+{% endblock %}

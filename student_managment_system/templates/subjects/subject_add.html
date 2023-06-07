@@ -1,0 +1,30 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block 'body' %}
+<form method="POST">
+    {% csrf_token %}
+    <div class="d-flex align-items-center flex-column w-auto ">
+        <h4>Name: </h4>
+        <p>{{ form.name }}</p>
+        <h4>Kod: </h4>
+        <p>{{ form.kod }}</p>
+        <h4>Program: </h4>
+        <p>{{ form.program }}</p>
+        <h4>Ects: </h4>
+        <p>{{ form.ects }}</p>
+        <h4>Semestar Izvaredan: </h4>
+        <p>{{ form.sem_izv }}</p>
+        <h4>Semestar Redovan: </h4>
+        <p>{{ form.sem_red }}</p>
+        <h4>Izborni: </h4>
+        <p>{{ form.izborni }}</p>
+        <h4>Nositelj: </h4>
+        <select name="nositelj" class="mb-4">
+            {% for profesor in profesors %}
+            <option value="{{ profesor.id }}">{{ profesor.username }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit" value="Submit" class="btn btn-primary m-5">Submit</button>
+    </div>
+</form>
+{% endblock %}

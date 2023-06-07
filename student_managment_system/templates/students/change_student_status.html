@@ -1,0 +1,18 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block 'body' %}
+<div class="d-flex justify-content-center">
+    <form method="POST">
+        {% csrf_token %}
+        <select name="status" class="form-select form-select-lg mb-3">
+            <option value="upisan">Upisan</option>
+            <option value="neupisan">Neupisan</option>
+            <option value="izgubljen_potpis">Izgubljeni Potpis</option>
+            <option value="polozen">Polozen</option>
+        </select>
+        <input type="hidden" name="status_id" value="{{ status_id }}">
+        <button type="submit" class="btn btn-primary ms-5">Submit</button>
+    </form>
+</div>
+{% endblock %}

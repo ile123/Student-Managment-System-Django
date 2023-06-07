@@ -1,0 +1,26 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block 'body' %}
+<div class="d-flex align-items-center flex-column w-auto ">
+    <h4>Name: </h4>
+    <p>{{ subject.name }}</p>
+    <h4>Kod: </h4>
+    <p>{{ subject.kod }}</p>
+    <h4>Program: </h4>
+    <p>{{ subject.program }}</p>
+    <h4>ECTS: </h4>
+    <p>{{ subject.ects }}</p>
+    <h4>Semestar Izvaredan: </h4>
+    <p>{{ subject.sem_izv }}</p>
+    <h4>Semestar Redovan: </h4>
+    <p>{{ subject.sem_red }}</p>
+    <h4>Izborni: </h4>
+    <p>{{ subject.izborni }}</p>
+    <h4>Nositelj: </h4>
+    {% if subject.nositelj is None %}
+    <p>No profesor is asigned to this subject!</p>
+    {% else %}
+    <p>{{ subject.nositelj }}</p>
+    {% endif %}
+</div>
+{% endblock %}

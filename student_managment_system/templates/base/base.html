@@ -1,0 +1,53 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="Ilario Batistic">
+        {% load bootstrap5 %}
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+        <title>Django Seminar</title>
+    </head>
+    <body>
+        <header class="container-fluid">
+            <div class="row bg-info">
+              <div class="col-sm-4">
+                    <h3 class="m-3 w-75">Student Management System</h3>
+              </div>
+                <div class="col">
+                    <nav class="navbar navbar-expand-lg navbar-light d-flex">
+                        <a href="{% url 'home' %}" class="btn btn-primary mt-2">Home</a>
+                        {% if user.is_authenticated %}
+                            {% if user.uloga.name == 'student' %}
+                            <a href="{% url 'enrollment_form' %}" class="btn btn-light mt-2 ms-2">Subjects</a>
+                            {% endif %}
+                            {% if user.uloga.name == 'administrator' %}
+                            <a href="{% url 'subjects' %}" class="btn btn-light mt-2 ms-2">Subjects</a>
+                            <a href="{% url 'students' %}" class="btn btn-warning mt-2 ms-2">Students</a>
+                            <a href="{% url 'profesors' %}" class="btn btn-secondary mt-2 ms-2">Profesors</a>
+                            {% endif %}
+                            {% if user.uloga.name == 'profesor' %}
+                            <a href="{% url 'subjects' %}" class="btn btn-light mt-2 ms-2">Subjects</a>
+                            {% endif %}
+                            <a href="{% url 'logout' %}" class="btn btn-danger mt-2 ms-2 ms-auto">Logout</a>
+                        {% else %}
+                            <a href="{% url 'login' %}" class="btn btn-danger mt-2 ms-auto me-3 ms-auto">Login</a>
+                            <a href="{% url 'register' %}" class="btn btn-warning mt-2">Register</a>
+                        {% endif %}
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <main class="mt-5">
+        <div class="d-flex flex-column min-vw-auto container">
+            {% block 'body' %}
+            {% endblock %}
+        </div>
+        </main>
+    </div>
+    </body>
+</html>
